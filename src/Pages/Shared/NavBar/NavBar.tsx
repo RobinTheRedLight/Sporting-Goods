@@ -59,7 +59,7 @@ const NavBar = () => {
           } sm:flex sm:items-center sm:w-auto`}
           id="navbar-hamburger"
         >
-          <ul className="flex flex-col font-medium mt-4 rounded-lg bg-gray-50 sm:flex-row sm:space-x-8 sm:mt-0 sm:font-medium sm:bg-transparent ">
+          <ul className="lg:text-lg flex flex-col font-medium mt-4 rounded-lg bg-gray-50 sm:flex-row sm:space-x-8 sm:mt-0 sm:font-medium sm:bg-transparent ">
             <li>
               <Link
                 to="/"
@@ -97,7 +97,7 @@ const NavBar = () => {
                 to="/about-us"
                 className="block py-2 px-3 text-white rounded hover:bg-gray-100 dark:hover:bg-gray-700  sm:bg-transparent sm:hover:bg-transparent "
               >
-               About Us
+                About Us
               </Link>
             </li>
           </ul>
