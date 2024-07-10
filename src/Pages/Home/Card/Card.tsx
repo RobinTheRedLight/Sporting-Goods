@@ -13,7 +13,9 @@ const Card = ({ product }: CardProps) => {
     price,
     image,
   } = product;
-  const handleViewDetails = () => {};
+  const handleViewDetails = () => {
+    
+  };
 
   return (
     <div className="border border-gray-300 rounded-lg p-4 m-4 w-72 text-center shadow-lg font-[Roboto]">
