@@ -131,3 +131,29 @@ body {
   stroke-dasharray: 125.6;
   transform: rotate(-90deg);
 }
+
+/* New CSS for Discount Message */
+@keyframes fadeInOut {
+  0%,
+  100% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+.discount-message {
+  position: absolute;
+  top: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 3em;
+  font-family: "Oswald";
+  color: #EAB308;
+  background-color: rgba(0, 0, 0, 0.7);
+  padding: 10px 20px;
+  border-radius: 10px;
+  animation: fadeInOut 5s infinite;
+  z-index: 2;
+}

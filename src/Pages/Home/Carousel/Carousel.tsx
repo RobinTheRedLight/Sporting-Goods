@@ -20,6 +20,7 @@ const Carousel = () => {
       progressContent.current.textContent = `${Math.ceil(time / 1000)}s`;
     }
   };
+
   return (
     <>
       <div className="overlay">
@@ -29,6 +30,7 @@ const Carousel = () => {
           <button className="shop-now">SHOP NOW</button>
         </div>
       </div>
+      <div className="discount-message">50% Discount!</div>
       <Swiper
         spaceBetween={30}
         centeredSlides={true}
