@@ -56,6 +56,26 @@ export const baseApi = createApi({
       },
       providesTags: ["cart"],
     }),
+
+    updateCart: builder.mutation({
+      query: (data) => {
+        return {
+          url: `/cart/${data.productId}`,
+          method: "PUT",
+          body: data,
+        };
+      },
+      invalidatesTags: ["cart"],
+    }),
+    removeFromCart: builder.mutation({
+      query: ({ productId }) => {
+        return {
+          url: `/cart/${productId}`,
+          method: "DELETE",
+        };
+      },
+      invalidatesTags: ["cart"],
+    }),
   }),
 });
 
@@ -65,4 +85,6 @@ export const {
   useGetProductByCategoryQuery,
   useAddToCartMutation,
   useGetCartQuery,
+  useUpdateCartMutation,
+  useRemoveFromCartMutation,
 } = baseApi;
