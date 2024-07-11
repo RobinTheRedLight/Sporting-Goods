@@ -1,7 +1,10 @@
 import { ContactForm } from "../../../types/ContactForm.types";
 import React, { useState } from "react";
+import { Toaster } from "../../../components/ui/toaster";
+import { useToast } from "../../../components/ui/use-toast";
 
 const ContactUs = () => {
+  const { toast } = useToast();
   const [form, setForm] = useState<ContactForm>({
     name: "",
     email: "",
@@ -20,8 +23,9 @@ const ContactUs = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log(form);
-    alert("Form submitted successfully!");
+    toast({
+      description: "Your message has been sent.",
+    });
     setForm({
       name: "",
       email: "",
@@ -31,8 +35,8 @@ const ContactUs = () => {
 
   return (
     <>
-      <h2 className="text-5xl  text-center mb-8 font-[Oswald]">CONTACT US</h2>
-      <div className="max-w-6xl mx-auto p-6 bg-white mb-12 ">
+      <h2 className="text-5xl  text-center mb-8 font-[Oswald]">Contact Us</h2>
+      <div className="max-w-full mx-auto p-6 bg-white mb-12 ">
         <div className="flex flex-wrap">
           <div className="w-full md:w-1/2 p-4">
             <h1 className="font-[Oswald] text-5xl  text-yellow-500 mb-4">
@@ -51,7 +55,7 @@ const ContactUs = () => {
           </div>
 
           <div className="w-full md:w-1/2 p-4 font-[Roboto]">
-            <h2 className="text-xl font-semibold uppercase tracking-wide mb-4">
+            <h2 className="text-2xl font-semibold  tracking-wide mb-4">
               Send a Message
             </h2>
             <form onSubmit={handleSubmit} className="space-y-4">
@@ -98,6 +102,7 @@ const ContactUs = () => {
                 >
                   Send Messages
                 </button>
+                <Toaster />
               </div>
             </form>
           </div>

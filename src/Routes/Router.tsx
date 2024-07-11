@@ -4,6 +4,7 @@ import Main from "../components/layout/Main";
 import SingleProduct from "../Pages/SingleProduct/SingleProduct";
 import AllProducts from "../Pages/AllProducts/AllProducts";
 import AllProductsByCategory from "../Pages/AllProducts/AllProductsByCategory";
+import AboutUs from "../Pages/AboutUs/AboutUs";
 
 export const router = createBrowserRouter([
   {
@@ -25,6 +26,10 @@ export const router = createBrowserRouter([
       {
         path: "/all-products/:category",
         element: <AllProductsByCategory></AllProductsByCategory>,
+      },
+      {
+        path: "/about-us",
+        element: <AboutUs></AboutUs>,
       },
     ],
   },
