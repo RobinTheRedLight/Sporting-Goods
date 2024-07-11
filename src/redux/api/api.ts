@@ -3,18 +3,13 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 export const baseApi = createApi({
   reducerPath: "baseApi",
   baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:5000" }),
-  tagTypes: ["products", "product", "category"],
+  tagTypes: ["products", "product", "category", "addToCart", "cart"],
   endpoints: (builder) => ({
     getProducts: builder.query({
       query: () => {
-        // const params = new URLSearchParams();
-        // if (paramsName) {
-        //   params.append("paramsName", paramsName);
-        // }
         return {
           url: "/products",
           method: "GET",
-          // params: paramsName,
         };
       },
       providesTags: ["products"],
@@ -23,10 +18,6 @@ export const baseApi = createApi({
     getProduct: builder.query({
       query: (id) => {
         console.log(id);
-        // const params = new URLSearchParams();
-        // if (paramsName) {
-        //   params.append("paramsName", paramsName);
-        // }
         return {
           url: `/product/${id}`,
           method: "GET",
@@ -38,10 +29,6 @@ export const baseApi = createApi({
     getProductByCategory: builder.query({
       query: (category) => {
         console.log(category);
-        // const params = new URLSearchParams();
-        // if (paramsName) {
-        //   params.append("paramsName", paramsName);
-        // }
         return {
           url: `/all-products/${category}`,
           method: "GET",
@@ -49,32 +36,33 @@ export const baseApi = createApi({
       },
       providesTags: ["category"],
     }),
-    // addDataName: builder.mutation({
-    //   query: (data) => {
-    //     return {
-    //       url: "/routeName",
-    //       method: "POST",
-    //       body: data,
-    //     };
-    //   },
-    //   invalidatesTags: ["dataName"],
-    // }),
-    // updateDataName: builder.mutation({
-    //   query: (options) => {
-    //     return {
-    //       url: `/routeName/${options.id}`,
-    //       method: "PUT",
-    //       body: options.data,
-    //     };
-    //   },
-    //   invalidatesTags: ["dataName"],
-    // }),
+
+    addToCart: builder.mutation({
+      query: (data) => {
+        return {
+          url: "/cart",
+          method: "POST",
+          body: data,
+        };
+      },
+      invalidatesTags: ["addToCart", "cart"],
+    }),
+    getCart: builder.query({
+      query: () => {
+        return {
+          url: "/cart",
+          method: "GET",
+        };
+      },
+      providesTags: ["cart"],
+    }),
   }),
 });
+
 export const {
   useGetProductQuery,
   useGetProductsQuery,
   useGetProductByCategoryQuery,
-  /*useUpdateDataNameMutation*/
-  /*useAddDataNameMutation */
+  useAddToCartMutation,
+  useGetCartQuery,
 } = baseApi;

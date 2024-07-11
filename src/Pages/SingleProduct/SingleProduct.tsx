@@ -1,87 +1,69 @@
-import { useState } from "react";
 import { useParams } from "react-router-dom";
 import Rating from "react-rating";
 import { PhotoProvider, PhotoView } from "react-photo-view";
 import "react-photo-view/dist/react-photo-view.css";
-import { useGetProductQuery } from "../..//redux/api/api";
-
-// interface Product {
-//   id: string;
-//   name: string;
-//   description: string;
-//   category: string;
-//   brand: string;
-//   stock: number;
-//   rating: number;
-//   price: number;
-//   image: string;
-// }
-
-// const products: Product[] = [
-//   {
-//     id: "1",
-//     name: "Running Shoes",
-//     description: "Comfortable and durable running shoes.",
-//     category: "Footwear",
-//     brand: "BrandX",
-//     stock: 10,
-//     rating: 4.5,
-//     price: 100,
-//     image: "https://via.placeholder.com/150",
-//   },
-//   // Add more product objects as needed
-// ];
-
-// interface CartItem {
-//   product: Product;
-//   quantity: number;
-// }
+import {
+  useAddToCartMutation,
+  useGetProductQuery,
+  useGetCartQuery,
+} from "../../redux/api/api";
+import { useState, useEffect } from "react";
+import { Product } from "../../types/ProductProp.type";
 
 const SingleProduct = () => {
   const { id } = useParams<{ id: string }>();
-  const { data, isLoading } = useGetProductQuery(id);
+  const { data, isLoading: isProductLoading, refetch } = useGetProductQuery(id);
+  const { data: cartData, isLoading: isCartLoading } =
+    useGetCartQuery(undefined);
+  const [addCart, { isSuccess, isLoading: isAdding }] = useAddToCartMutation();
 
-  if (isLoading) {
+  const [currentStock, setCurrentStock] = useState<number>(0);
+
+  useEffect(() => {
+    if (data) {
+      setCurrentStock(data.stockQuantity);
+    }
+  }, [data]);
+
+  if (isProductLoading || isCartLoading) {
     return <div>Loading...</div>;
   }
   if (!data) {
     return <div>No data available</div>;
   }
-  console.log(data.name);
 
-  // const [cart, setCart] = useState<CartItem[]>([]);
+  const addToCart = async (product: Product) => {
+    const cartItem = cartData.find(
+      (item: any) => item.productId === product._id
+    );
+    if (cartItem) {
+      if (cartItem.quantity < product.stockQuantity) {
+        await addCart({ ...cartItem, quantity: cartItem.quantity + 1 });
+        setCurrentStock((prevStock) => prevStock - 1);
+      } else {
+        alert("Stock limit reached");
+      }
+    } else {
+      await addCart({
+        productId: product._id,
+        name: product.name,
+        category: product.category,
+        stockQuantity: product.stockQuantity,
+        brand: product.brand,
+        rating: product.rating,
+        description: product.description,
+        price: product.price,
+        image: product.image,
+        quantity: 1,
+      });
+      setCurrentStock((prevStock) => prevStock - 1);
+    }
+  };
 
-  // const product = products.find((p) => p.id === id);
-
-  // if (!product) {
-  //   return <div>Product not found</div>;
-  // }
-
-  // const addToCart = (product: Product) => {
-  //   setCart((prevCart) => {
-  //     const existingItem = prevCart.find(
-  //       (item) => item.product.id === product.id
-  //     );
-
-  //     if (existingItem) {
-  //       if (existingItem.quantity < product.stock) {
-  //         return prevCart.map((item) =>
-  //           item.product.id === product.id
-  //             ? { ...item, quantity: item.quantity + 1 }
-  //             : item
-  //         );
-  //       }
-  //       return prevCart;
-  //     }
-
-  //     return [...prevCart, { product, quantity: 1 }];
-  //   });
-  // };
-
-  // const isAddToCartDisabled = () => {
-  //   const cartItem = cart.find((item) => item.product.id === product.id);
-  //   return cartItem ? cartItem.quantity >= product.stock : false;
-  // };
+  const isAddToCartDisabled = () => {
+    const cartItem = cartData.find((item: any) => item.productId === data._id);
+    return cartItem ? cartItem.quantity >= data.stockQuantity : false;
+  };
 
   return (
     <div className="container mx-auto p-4">
@@ -112,17 +94,17 @@ const SingleProduct = () => {
             />
             <span className="ml-2 text-gray-600">({data.rating})</span>
           </div>
-          <p className="text-gray-600 mb-2">In Stock: {data.stock}</p>
+          <p className="text-gray-600 mb-2">In Stock: {currentStock}</p>
           <p className="text-xl font-bold mb-4">${data.price}</p>
-          {/* <button
-            // onClick={() => addToCart(product)}
+          <button
+            onClick={() => addToCart(data)}
             className={`px-4 py-2 bg-blue-500 text-white rounded ${
               isAddToCartDisabled() ? "opacity-50 cursor-not-allowed" : ""
             }`}
             disabled={isAddToCartDisabled()}
           >
             {isAddToCartDisabled() ? "Out of Stock" : "Add to Cart"}
-          </button> */}
+          </button>
         </div>
       </div>
     </div>
