@@ -1,8 +1,9 @@
-import { useGetProductQuery } from "../../../redux/api/api";
+import { useGetProductsQuery } from "../../../redux/api/api";
 import Card from "../Card/Card";
 
 const Featured = () => {
-  const { data, isLoading, isError } = useGetProductQuery(undefined);
+  const { data, isLoading, isError } = useGetProductsQuery(undefined);
+  console.log(data);
   if (isLoading) {
     return <p>Loading...</p>;
   }

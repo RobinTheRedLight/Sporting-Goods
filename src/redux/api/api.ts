@@ -3,10 +3,9 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 export const baseApi = createApi({
   reducerPath: "baseApi",
   baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:5000" }),
-  tagTypes: ["products"],
+  tagTypes: ["products", "product", "category"],
   endpoints: (builder) => ({
-    getProduct: builder.query({
-      //If you want to post without params just remove the all params code
+    getProducts: builder.query({
       query: () => {
         // const params = new URLSearchParams();
         // if (paramsName) {
@@ -15,10 +14,40 @@ export const baseApi = createApi({
         return {
           url: "/products",
           method: "GET",
-          // params: params,
+          // params: paramsName,
         };
       },
       providesTags: ["products"],
+    }),
+
+    getProduct: builder.query({
+      query: (id) => {
+        console.log(id);
+        // const params = new URLSearchParams();
+        // if (paramsName) {
+        //   params.append("paramsName", paramsName);
+        // }
+        return {
+          url: `/product/${id}`,
+          method: "GET",
+        };
+      },
+      providesTags: ["product"],
+    }),
+
+    getProductByCategory: builder.query({
+      query: (category) => {
+        console.log(category);
+        // const params = new URLSearchParams();
+        // if (paramsName) {
+        //   params.append("paramsName", paramsName);
+        // }
+        return {
+          url: `/all-products/${category}`,
+          method: "GET",
+        };
+      },
+      providesTags: ["category"],
     }),
     // addDataName: builder.mutation({
     //   query: (data) => {
@@ -43,6 +72,9 @@ export const baseApi = createApi({
   }),
 });
 export const {
-  useGetProductQuery /*useUpdateDataNameMutation*/,
+  useGetProductQuery,
+  useGetProductsQuery,
+  useGetProductByCategoryQuery,
+  /*useUpdateDataNameMutation*/
   /*useAddDataNameMutation */
 } = baseApi;

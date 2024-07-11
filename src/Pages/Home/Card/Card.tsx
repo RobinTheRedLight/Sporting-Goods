@@ -1,9 +1,10 @@
 import { CardProps } from "@/types";
 import Rating from "react-rating";
+import { Link } from "react-router-dom";
 
 const Card = ({ product }: CardProps) => {
   const {
-    id,
+    _id,
     name,
     category,
     stockQuantity,
@@ -13,9 +14,7 @@ const Card = ({ product }: CardProps) => {
     price,
     image,
   } = product;
-  const handleViewDetails = () => {
-    
-  };
+  const handleViewDetails = () => {};
 
   return (
     <div className="border border-gray-300 rounded-lg p-4 m-4 w-72 text-center shadow-lg font-[Roboto]">
@@ -38,12 +37,11 @@ const Card = ({ product }: CardProps) => {
         />
         <p className="text-gray-600 mb-2">{description}</p>
         <p className="text-gray-900 font-bold mb-4">${price}</p>
-        <button
-          onClick={handleViewDetails}
-          className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
-        >
-          View Details
-        </button>
+        <Link to={`/products/${_id}`}>
+          <button className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
+            View Details
+          </button>
+        </Link>
       </div>
     </div>
   );

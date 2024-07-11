@@ -5,6 +5,7 @@ import img1 from "../../../assets/categories/category1.jpg";
 import img2 from "../../../assets/categories/category2.jpg";
 import img3 from "../../../assets/categories/category3.jpg";
 import img4 from "../../../assets/categories/category4.jpg";
+import { Link } from "react-router-dom";
 
 const categories = [
   { name: "Footwear", image: img1 },
@@ -61,9 +62,11 @@ const Categories = () => {
               />
               <div className="p-4 text-center">
                 <h3 className="text-xl font-semibold mb-4">{category.name}</h3>
-                <button className="px-4 py-2 bg-black text-white rounded hover:bg-gray-600 transition duration-300">
-                  Explore
-                </button>
+                <Link to={`/all-products/${category.name}`}>
+                  <button className="px-4 py-2 bg-black text-white rounded hover:bg-gray-600 transition duration-300">
+                    Explore
+                  </button>
+                </Link>
               </div>
             </motion.div>
           ))}
