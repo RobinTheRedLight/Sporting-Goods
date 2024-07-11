@@ -1,5 +1,6 @@
 import Carousel from "../Carousel/Carousel";
 import Categories from "../Categories/Categories";
+import ContactUs from "../ContactUs/ContactUs";
 import Featured from "../Featured/Featured";
 
 const Home = () => {
@@ -8,6 +9,7 @@ const Home = () => {
       <Carousel />
       <Featured />
       <Categories />
+      <ContactUs />
     </>
   );
 };
