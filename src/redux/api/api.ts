@@ -1,3 +1,105 @@
+// import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+
+// export const baseApi = createApi({
+//   reducerPath: "baseApi",
+//   baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:5000" }),
+//   tagTypes: ["products", "product", "category", "addToCart", "cart"],
+//   endpoints: (builder) => ({
+//     getProducts: builder.query({
+//       query: () => {
+//         return {
+//           url: "/products",
+//           method: "GET",
+//         };
+//       },
+//       providesTags: ["products"],
+//     }),
+
+//     getProduct: builder.query({
+//       query: (id) => {
+//         console.log(id);
+//         return {
+//           url: `/product/${id}`,
+//           method: "GET",
+//         };
+//       },
+//       providesTags: ["product"],
+//     }),
+
+//     getProductByCategory: builder.query({
+//       query: (category) => {
+//         console.log(category);
+//         return {
+//           url: `/all-products/${category}`,
+//           method: "GET",
+//         };
+//       },
+//       providesTags: ["category"],
+//     }),
+
+//     addToCart: builder.mutation({
+//       query: (data) => {
+//         return {
+//           url: "/cart",
+//           method: "POST",
+//           body: data,
+//         };
+//       },
+//       invalidatesTags: ["addToCart", "cart"],
+//     }),
+//     getCart: builder.query({
+//       query: () => {
+//         return {
+//           url: "/cart",
+//           method: "GET",
+//         };
+//       },
+//       providesTags: ["cart"],
+//     }),
+
+//     updateCart: builder.mutation({
+//       query: (data) => {
+//         return {
+//           url: `/cart/${data.productId}`,
+//           method: "PUT",
+//           body: data,
+//         };
+//       },
+//       invalidatesTags: ["cart"],
+//     }),
+//     removeFromCart: builder.mutation({
+//       query: ({ productId }) => {
+//         return {
+//           url: `/cart/${productId}`,
+//           method: "DELETE",
+//         };
+//       },
+//       invalidatesTags: ["cart"],
+//     }),
+//     updateProductStock: builder.mutation({
+//       query: ({ productId, quantity }) => {
+//         return {
+//           url: `/product-stock/${productId}`,
+//           method: "PUT",
+//           body: { quantity },
+//         };
+//       },
+//       invalidatesTags: ["product"],
+//     }),
+//   }),
+// });
+
+// export const {
+//   useGetProductQuery,
+//   useGetProductsQuery,
+//   useGetProductByCategoryQuery,
+//   useAddToCartMutation,
+//   useGetCartQuery,
+//   useUpdateCartMutation,
+//   useRemoveFromCartMutation,
+//   useUpdateProductStockMutation,
+// } = baseApi;
+
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 export const baseApi = createApi({
@@ -6,85 +108,100 @@ export const baseApi = createApi({
   tagTypes: ["products", "product", "category", "addToCart", "cart"],
   endpoints: (builder) => ({
     getProducts: builder.query({
-      query: () => {
-        return {
-          url: "/products",
-          method: "GET",
-        };
-      },
+      query: () => ({
+        url: "/products",
+        method: "GET",
+      }),
       providesTags: ["products"],
     }),
-
     getProduct: builder.query({
-      query: (id) => {
-        console.log(id);
-        return {
-          url: `/product/${id}`,
-          method: "GET",
-        };
-      },
+      query: (id) => ({
+        url: `/product/${id}`,
+        method: "GET",
+      }),
       providesTags: ["product"],
     }),
-
+    addProduct: builder.mutation({
+      query: (newProduct) => ({
+        url: "/products",
+        method: "POST",
+        body: newProduct,
+      }),
+      invalidatesTags: ["products"],
+    }),
+    updateProduct: builder.mutation({
+      query: ({ id, ...updatedProduct }) => ({
+        url: `/product/${id}`,
+        method: "PUT",
+        body: updatedProduct,
+      }),
+      invalidatesTags: ["products", "product"],
+    }),
+    deleteProduct: builder.mutation({
+      query: (id) => ({
+        url: `/product/${id}`,
+        method: "DELETE",
+      }),
+      invalidatesTags: ["products"],
+    }),
     getProductByCategory: builder.query({
-      query: (category) => {
-        console.log(category);
-        return {
-          url: `/all-products/${category}`,
-          method: "GET",
-        };
-      },
+      query: (category) => ({
+        url: `/all-products/${category}`,
+        method: "GET",
+      }),
       providesTags: ["category"],
     }),
-
     addToCart: builder.mutation({
-      query: (data) => {
-        return {
-          url: "/cart",
-          method: "POST",
-          body: data,
-        };
-      },
+      query: (data) => ({
+        url: "/cart",
+        method: "POST",
+        body: data,
+      }),
       invalidatesTags: ["addToCart", "cart"],
     }),
     getCart: builder.query({
-      query: () => {
-        return {
-          url: "/cart",
-          method: "GET",
-        };
-      },
+      query: () => ({
+        url: "/cart",
+        method: "GET",
+      }),
       providesTags: ["cart"],
     }),
-
     updateCart: builder.mutation({
-      query: (data) => {
-        return {
-          url: `/cart/${data.productId}`,
-          method: "PUT",
-          body: data,
-        };
-      },
+      query: (data) => ({
+        url: `/cart/${data.productId}`,
+        method: "PUT",
+        body: data,
+      }),
       invalidatesTags: ["cart"],
     }),
     removeFromCart: builder.mutation({
-      query: ({ productId }) => {
-        return {
-          url: `/cart/${productId}`,
-          method: "DELETE",
-        };
-      },
+      query: ({ productId }) => ({
+        url: `/cart/${productId}`,
+        method: "DELETE",
+      }),
       invalidatesTags: ["cart"],
+    }),
+    updateProductStock: builder.mutation({
+      query: ({ productId, quantity }) => ({
+        url: `/product-stock/${productId}`,
+        method: "PUT",
+        body: { quantity },
+      }),
+      invalidatesTags: ["product"],
     }),
   }),
 });
 
 export const {
-  useGetProductQuery,
   useGetProductsQuery,
+  useGetProductQuery,
+  useAddProductMutation,
+  useUpdateProductMutation,
+  useDeleteProductMutation,
   useGetProductByCategoryQuery,
   useAddToCartMutation,
   useGetCartQuery,
   useUpdateCartMutation,
   useRemoveFromCartMutation,
+  useUpdateProductStockMutation,
 } = baseApi;

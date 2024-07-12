@@ -6,6 +6,9 @@ import AllProducts from "../Pages/AllProducts/AllProducts";
 import AllProductsByCategory from "../Pages/AllProducts/AllProductsByCategory";
 import AboutUs from "../Pages/AboutUs/AboutUs";
 import CartPage from "../Pages/CartPage/CartPage";
+import Checkout from "../Pages/Checkout/Checkout";
+import OrderSuccess from "../Pages/Checkout/OrderSuccess";
+import ManageProducts from "../Pages/ManageProducts/ManageProducts";
 
 export const router = createBrowserRouter([
   {
@@ -35,6 +38,18 @@ export const router = createBrowserRouter([
       {
         path: "/Cart",
         element: <CartPage></CartPage>,
+      },
+      {
+        path: "/checkout",
+        element: <Checkout></Checkout>,
+      },
+      {
+        path: "/order-success",
+        element: <OrderSuccess></OrderSuccess>,
+      },
+      {
+        path: "/manage-products",
+        element: <ManageProducts></ManageProducts>,
       },
     ],
   },
