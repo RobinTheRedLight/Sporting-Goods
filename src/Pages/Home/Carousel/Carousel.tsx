@@ -1,5 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useRef } from "react";
+import { motion } from "framer-motion";
+import { fadeUp } from "../../../Animation/constant";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
@@ -24,11 +26,18 @@ const Carousel = () => {
   return (
     <>
       <div className="overlay">
-        <h1>Eternal Fashion</h1>
-        <h2>Embrace Your Timeless Look</h2>
-        <div className="button-container">
-          <button className="shop-now">SHOP NOW</button>
-        </div>
+        <motion.div
+          variants={fadeUp}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true }}
+        >
+          <h1>Eternal Fashion</h1>
+          <h2>Embrace Your Timeless Look</h2>
+          <div className="button-container">
+            <button className="shop-now">SHOP NOW</button>
+          </div>
+        </motion.div>
       </div>
       <div className="discount-message">50% Discount!</div>
       <Swiper

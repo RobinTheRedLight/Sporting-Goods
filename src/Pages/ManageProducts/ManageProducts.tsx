@@ -50,6 +50,11 @@ const ManageProducts = () => {
           className="border p-2 mb-2 w-full"
         />
         <input
+          {...register("brand", { required: true })}
+          placeholder="Brand Name"
+          className="border p-2 mb-2 w-full"
+        />
+        <input
           {...register("price", { required: true })}
           placeholder="Product Price"
           className="border p-2 mb-2 w-full"
@@ -63,6 +68,18 @@ const ManageProducts = () => {
         <input
           {...register("stockQuantity", { required: true })}
           placeholder="Stock Quantity"
+          className="border p-2 mb-2 w-full"
+          type="number"
+        />
+        <input
+          {...register("image", { required: true })}
+          placeholder="Paste image link"
+          className="border p-2 mb-2 w-full"
+          type="string"
+        />
+        <input
+          {...register("rating", { required: true, min: 1, max: 5 })}
+          placeholder="Rate out of 5"
           className="border p-2 mb-2 w-full"
           type="number"
         />

@@ -1,6 +1,6 @@
 export interface CardProps {
   product: {
-    id: number;
+    _id: string;
     name: string;
     category: string;
     stockQuantity: number;

@@ -14,7 +14,6 @@ const Card = ({ product }: CardProps) => {
     price,
     image,
   } = product;
-  const handleViewDetails = () => {};
 
   return (
     <div className="border border-gray-300 rounded-lg p-4 m-4 w-72 text-center shadow-lg font-[Roboto]">
@@ -32,13 +31,13 @@ const Card = ({ product }: CardProps) => {
         <Rating
           initialRating={rating}
           readonly
-          emptySymbol="fa fa-star-o fa-2x"
-          fullSymbol="fa fa-star fa-2x"
+          emptySymbol="fa fa-star-o "
+          fullSymbol="fa fa-star "
         />
         <p className="text-gray-600 mb-2">{description}</p>
         <p className="text-gray-900 font-bold mb-4">${price}</p>
         <Link to={`/products/${_id}`}>
-          <button className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
+          <button className="bg-black text-white px-4 py-2 rounded hover:bg-slate-700">
             View Details
           </button>
         </Link>

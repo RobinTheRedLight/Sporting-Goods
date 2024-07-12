@@ -2,6 +2,8 @@ import { ContactForm } from "../../../types/ContactForm.types";
 import React, { useState } from "react";
 import { Toaster } from "../../../components/ui/toaster";
 import { useToast } from "../../../components/ui/use-toast";
+import { motion } from "framer-motion";
+import { cards, variants } from "../../../Animation/constant";
 
 const ContactUs = () => {
   const { toast } = useToast();
@@ -42,16 +44,23 @@ const ContactUs = () => {
             <h1 className="font-[Oswald] text-5xl  text-yellow-500 mb-4">
               Get in Touch
             </h1>
-            <p className="mb-2 font-[Roboto]">
-              <i className="fas fa-map-marker-alt mr-2"></i> 37 Laldighi South,
-              Kolabari Shyamganj, Sylhet, Bangladesh
-            </p>
-            <p className="mb-2 font-[Roboto]">
-              <i className="fas fa-envelope mr-2"></i> sportspot@gmail.com
-            </p>
-            <p className="mb-2 font-[Roboto]">
-              <i className="fas fa-phone-alt mr-2"></i> <a>+8801712345678</a>
-            </p>
+            <motion.div
+              variants={variants}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true }}
+            >
+              <motion.p variants={cards} className="mb-2 font-[Roboto]">
+                <i className="fas fa-map-marker-alt mr-2"></i> 37 Laldighi
+                South, Kolabari Shyamganj, Sylhet, Bangladesh
+              </motion.p>
+              <motion.p variants={cards} className="mb-2 font-[Roboto]">
+                <i className="fas fa-envelope mr-2"></i> sportspot@gmail.com
+              </motion.p>
+              <motion.p variants={cards} className="mb-2 font-[Roboto]">
+                <i className="fas fa-phone-alt mr-2"></i> <a>+8801712345678</a>
+              </motion.p>
+            </motion.div>
           </div>
 
           <div className="w-full md:w-1/2 p-4 font-[Roboto]">
