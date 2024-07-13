@@ -9,7 +9,6 @@ const Home = () => {
     <>
       <Carousel />
       <Featured />
-      <LatestProducts />
       <Categories />
       <ContactUs />
     </>

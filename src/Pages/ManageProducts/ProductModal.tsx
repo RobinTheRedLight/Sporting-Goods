@@ -43,7 +43,7 @@ const ProductModal: React.FC<ProductModalProps> = ({
             className="border p-2 mb-2 w-full"
           />
           <input
-            {...register("price")}
+            {...register("price", { valueAsNumber: true })}
             placeholder="Product Price"
             className="border p-2 mb-2 w-full"
             type="number"
@@ -54,7 +54,7 @@ const ProductModal: React.FC<ProductModalProps> = ({
             className="border p-2 mb-2 w-full"
           />
           <input
-            {...register("stockQuantity")}
+            {...register("stockQuantity", { valueAsNumber: true })}
             placeholder="Stock Quantity"
             className="border p-2 mb-2 w-full"
             type="number"

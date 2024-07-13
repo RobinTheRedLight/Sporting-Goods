@@ -5,7 +5,9 @@ import Card from "../Card/Card";
 import { fadeLeft } from "../../../Animation/constant";
 
 const Featured = () => {
-  const { data, isLoading, error } = useGetProductsQuery(undefined);
+  const { data, isLoading, error } = useGetProductsQuery(undefined, {
+    pollingInterval: 30000,
+  });
 
   if (isLoading) {
     return <p>Loading...</p>;
@@ -14,14 +16,14 @@ const Featured = () => {
     return <div>Error fetching products</div>;
   }
 
-  const productsSlice = data.slice(0, 4);
+  const productsSlice = data.slice(0, 8);
 
   return (
     <div className="pt-16 pb-16">
-      <h2 className="text-5xl  mb-8 text-center font-[Oswald]">
+      <h2 className="text-5xl mb-8 text-center font-[Oswald]">
         Featured Products
       </h2>
-      <div className="grid md:grid-cols-4 bg-white">
+      <div className="flex flex-wrap justify-center bg-white">
         {productsSlice.map((product: Product) => (
           <motion.div
             variants={fadeLeft}

@@ -7,6 +7,8 @@ import {
 } from "../../redux/api/api";
 import { useForm } from "react-hook-form";
 import ProductModal from "./ProductModal";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const ManageProducts = () => {
   const { data: products, refetch } = useGetProductsQuery(undefined);
@@ -21,6 +23,7 @@ const ManageProducts = () => {
     await addProduct(formData);
     reset();
     refetch();
+    toast.success("Product Added");
   };
 
   const handleEditProduct = (product) => {
@@ -33,11 +36,13 @@ const ManageProducts = () => {
     setIsModalOpen(false);
     setEditProductData(null);
     refetch();
+    toast.success("Product Updated");
   };
 
   const handleDeleteProduct = async (id) => {
     await deleteProduct(id);
     refetch();
+    toast.success("Product Deleted");
   };
 
   return (
@@ -50,23 +55,33 @@ const ManageProducts = () => {
           className="border p-2 mb-2 w-full"
         />
         <input
-          {...register("brand", { required: true })}
-          placeholder="Brand Name"
-          className="border p-2 mb-2 w-full"
-        />
-        <input
-          {...register("price", { required: true })}
+          {...register("price", { required: true, valueAsNumber: true })}
           placeholder="Product Price"
           className="border p-2 mb-2 w-full"
           type="number"
         />
+        <input
+          {...register("description", { required: true })}
+          placeholder="Write description"
+          className="border p-2 mb-2 w-full"
+          type="string"
+        />
+        <input
+          {...register("brand", { required: true })}
+          placeholder="Brand Name"
+          className="border p-2 mb-2 w-full"
+        />
+
         <input
           {...register("category", { required: true })}
           placeholder="Product Category"
           className="border p-2 mb-2 w-full"
         />
         <input
-          {...register("stockQuantity", { required: true })}
+          {...register("stockQuantity", {
+            required: true,
+            valueAsNumber: true,
+          })}
           placeholder="Stock Quantity"
           className="border p-2 mb-2 w-full"
           type="number"
@@ -77,12 +92,7 @@ const ManageProducts = () => {
           className="border p-2 mb-2 w-full"
           type="string"
         />
-        <input
-          {...register("rating", { required: true, min: 1, max: 5 })}
-          placeholder="Rate out of 5"
-          className="border p-2 mb-2 w-full"
-          type="number"
-        />
+
         <button type="submit" className="bg-blue-500 text-white p-2 rounded">
           Add Product
         </button>
@@ -122,6 +132,7 @@ const ManageProducts = () => {
         onSubmit={handleUpdateProduct}
         initialData={editProductData}
       />
+      <ToastContainer autoClose={1000} />
     </div>
   );
 };

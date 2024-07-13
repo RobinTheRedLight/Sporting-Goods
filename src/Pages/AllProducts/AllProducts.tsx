@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useGetProductsQuery } from "../../redux/api/api";
 import Card from "../Home/Card/Card";
+import { Product } from "@/types/ProductProp.type";
 
 const AllProducts = () => {
   const { data: products, isLoading } = useGetProductsQuery(undefined);
@@ -47,18 +48,16 @@ const AllProducts = () => {
   }
 
   const filteredProducts = products
-    .filter((product) => {
+    .filter((product: Product) => {
       return (
         product.name.toLowerCase().includes(searchTerm.toLowerCase()) &&
         (filter.category ? product.category === filter.category : true) &&
         (filter.brand ? product.brand === filter.brand : true) &&
-        (filter.priceRange
-          ? product.price <= Number(filter.priceRange)
-          : true) &&
+        (filter.priceRange ? product.price <= Number(filter.priceRange) : true) &&
         (filter.rating ? product.rating >= Number(filter.rating) : true)
       );
     })
-    .sort((a, b) => {
+    .sort((a: Product, b: Product) => {
       if (sortOrder === "asc") {
         return a.price - b.price;
       } else if (sortOrder === "desc") {
@@ -69,17 +68,17 @@ const AllProducts = () => {
 
   return (
     <div className="pt-16 pb-16">
-      <h2 className="text-5xl mb-8 text-center font-[Oswald]">All Products</h2>
+      <h2 className="text-3xl md:text-5xl mb-8 text-center font-Oswald">All Products</h2>
 
-      <div className="mb-4 flex justify-between items-center">
+      <div className="flex flex-col md:flex-row justify-between items-center mb-4">
         <input
           type="text"
           placeholder="Search products..."
           value={searchTerm}
           onChange={handleSearch}
-          className="p-2 border border-gray-300 rounded"
+          className="p-2 mb-2 md:mb-0 md:mr-2 border border-gray-300 rounded w-full md:w-auto"
         />
-        <div className="flex space-x-4">
+        <div className="flex flex-wrap justify-center md:justify-start space-y-2 md:space-y-0 md:space-x-2">
           <select
             name="category"
             value={filter.category}
@@ -100,8 +99,9 @@ const AllProducts = () => {
           >
             <option value="">All Brands</option>
             <option value="PUMA">PUMA</option>
-          
-          
+            <option value="Nike">Nike</option>
+            <option value="adidas">adidas</option>
+            <option value="Fila">Fila</option>
           </select>
           <select
             name="priceRange"
@@ -110,9 +110,8 @@ const AllProducts = () => {
             className="p-2 border border-gray-300 rounded"
           >
             <option value="">All Prices</option>
-            <option value="50">Under $50</option>
-            <option value="100">Under $100</option>
-            {/* Add more price ranges as needed */}
+            <option value="50">Under $20</option>
+            <option value="100">Under $50</option>
           </select>
           <select
             name="rating"
@@ -123,7 +122,6 @@ const AllProducts = () => {
             <option value="">All Ratings</option>
             <option value="1">3 Star & Up</option>
             <option value="2">4 Stars & Up</option>
-            {/* Add more rating options as needed */}
           </select>
           <select
             name="sortOrder"
@@ -144,10 +142,14 @@ const AllProducts = () => {
         </div>
       </div>
 
-      <div className="grid md:grid-cols-4 gap-4">
-        {filteredProducts.map((product) => (
-          <Card key={product.id} product={product} />
-        ))}
+      <div className="grid gap-4 md:grid-cols-4 mx-auto justify-center">
+        {filteredProducts.length === 0 ? (
+          <p className="text-center text-xl">No products found.</p>
+        ) : (
+          filteredProducts.map((product: Product) => (
+            <Card key={product._id} product={product} />
+          ))
+        )}
       </div>
     </div>
   );

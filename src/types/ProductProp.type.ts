@@ -8,5 +8,6 @@ export interface Product {
   rating: number;
   price: number;
   image: string;
-  createdAt: Date;
+  createdAt?: Date;
+  productId?: string;
 }

@@ -21,17 +21,17 @@ const Footer = () => {
               </Link>
             </li>
             <li>
-              <Link to="/sustainability" className="hover:underline">
+              <Link to="#" className="hover:underline">
                 Sustainability
               </Link>
             </li>
             <li>
-              <Link to="/careers" className="hover:underline">
+              <Link to="#" className="hover:underline">
                 Careers
               </Link>
             </li>
             <li>
-              <Link to="/press" className="hover:underline">
+              <Link to="#" className="hover:underline">
                 Press
               </Link>
             </li>
@@ -41,22 +41,22 @@ const Footer = () => {
           <h3 className="text-lg font-semibold">Customer Service</h3>
           <ul className="space-y-2">
             <li>
-              <Link to="/contact-us" className="hover:underline">
+              <Link to="#" className="hover:underline">
                 Contact Us
               </Link>
             </li>
             <li>
-              <Link to="/faq" className="hover:underline">
+              <Link to="#" className="hover:underline">
                 FAQ
               </Link>
             </li>
             <li>
-              <Link to="/returns" className="hover:underline">
+              <Link to="#" className="hover:underline">
                 Returns
               </Link>
             </li>
             <li>
-              <Link to="/shipping" className="hover:underline">
+              <Link to="#"className="hover:underline">
                 Shipping
               </Link>
             </li>

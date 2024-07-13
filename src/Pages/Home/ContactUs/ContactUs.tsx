@@ -37,7 +37,9 @@ const ContactUs = () => {
 
   return (
     <>
-      <h2 className="text-5xl  text-center mb-8 font-[Oswald]">Contact Us</h2>
+      <h2 className="text-5xl  text-center mb-8  mt-8 font-[Oswald]">
+        Contact Us
+      </h2>
       <div className="max-w-full mx-auto p-6 bg-white mb-12 ">
         <div className="flex flex-wrap">
           <div className="w-full md:w-1/2 p-4">

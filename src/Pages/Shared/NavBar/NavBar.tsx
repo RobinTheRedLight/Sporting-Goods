@@ -9,7 +9,7 @@ const NavBar = () => {
   };
 
   return (
-    <nav className=" bg-black ">
+    <nav className="bg-black z-50 relative">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
         <a href="#" className="flex items-center space-x-3 rtl:space-x-reverse">
           <h1 className="size-13 bg-transparent border-2 border-yellow-500 text-yellow-500">
@@ -31,7 +31,7 @@ const NavBar = () => {
         <button
           data-collapse-toggle="navbar-hamburger"
           type="button"
-          className="inline-flex items-center justify-center p-2 w-10 h-10 text-sm text-gray-500 rounded-lg hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200  sm:hidden"
+          className="inline-flex items-center justify-center p-2 w-10 h-10 text-sm text-gray-500 rounded-lg hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 sm:hidden"
           aria-controls="navbar-hamburger"
           aria-expanded={isOpen}
           onClick={toggleMenu}
@@ -56,10 +56,10 @@ const NavBar = () => {
         <div
           className={`w-full font-[Roboto] ${
             isOpen ? "block" : "hidden"
-          } sm:flex sm:items-center sm:w-auto`}
+          } sm:flex sm:items-center sm:w-auto `}
           id="navbar-hamburger"
         >
-          <ul className="lg:text-lg flex flex-col font-medium mt-4 rounded-lg bg-gray-50 sm:flex-row sm:space-x-8 sm:mt-0 sm:font-medium sm:bg-transparent ">
+          <ul className="lg:text-lg flex flex-col font-medium mt-4 rounded-lg md:bg-black sm:flex-row sm:space-x-8 sm:mt-0 sm:font-medium sm:bg-transparent">
             <li>
               <Link
                 to="/"
@@ -71,7 +71,7 @@ const NavBar = () => {
             <li>
               <Link
                 to="/all-products"
-                className="block py-2 px-3 text-white rounded hover:bg-gray-100  sm:bg-transparent sm:hover:bg-transparent "
+                className="block py-2 px-3 text-white rounded hover:bg-gray-100 sm:bg-transparent sm:hover:bg-transparent "
               >
                 All Products
               </Link>
@@ -79,7 +79,7 @@ const NavBar = () => {
             <li>
               <Link
                 to="/manage-products"
-                className="block py-2 px-3 text-white rounded hover:bg-gray-100  sm:bg-transparent sm:hover:bg-transparent "
+                className="block py-2 px-3 text-white rounded hover:bg-gray-100 sm:bg-transparent sm:hover:bg-transparent "
               >
                 Manage Products
               </Link>
@@ -87,7 +87,7 @@ const NavBar = () => {
             <li>
               <Link
                 to="/Cart"
-                className="block py-2 px-3 text-white rounded hover:bg-gray-100 dark:hover:bg-gray-700  sm:bg-transparent sm:hover:bg-transparent "
+                className="block py-2 px-3 text-white rounded hover:bg-gray-100 dark:hover:bg-gray-700 sm:bg-transparent sm:hover:bg-transparent "
               >
                 Cart
               </Link>
@@ -95,7 +95,7 @@ const NavBar = () => {
             <li>
               <Link
                 to="/about-us"
-                className="block py-2 px-3 text-white rounded hover:bg-gray-100 dark:hover:bg-gray-700  sm:bg-transparent sm:hover:bg-transparent "
+                className="block py-2 px-3 text-white rounded hover:bg-gray-100 dark:hover:bg-gray-700 sm:bg-transparent sm:hover:bg-transparent "
               >
                 About Us
               </Link>

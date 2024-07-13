@@ -1,3 +1,6 @@
+import img1 from "../../assets/aboutUs/img1.png";
+import img2 from "../../assets/aboutUs/img2.png";
+
 const AboutUs = () => {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 bg-white">
@@ -57,29 +60,29 @@ const AboutUs = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 font-[Roboto]">
           <div className="text-center">
             <img
-              src="https://via.placeholder.com/150"
+              src={img1}
               alt="Team Member"
               className="w-32 h-32 rounded-full mx-auto mb-4"
             />
-            <h3 className="text-xl font-semibold">John Doe</h3>
+            <h3 className="text-xl font-semibold">Elon Musk</h3>
             <p className="text-lg text-gray-700">CEO</p>
           </div>
           <div className="text-center">
             <img
-              src="https://via.placeholder.com/150"
+              src={img1}
               alt="Team Member"
               className="w-32 h-32 rounded-full mx-auto mb-4"
             />
-            <h3 className="text-xl font-semibold">Jane Smith</h3>
+            <h3 className="text-xl font-semibold">Mark Zuckerberg</h3>
             <p className="text-lg text-gray-700">CTO</p>
           </div>
           <div className="text-center">
             <img
-              src="https://via.placeholder.com/150"
+              src={img2}
               alt="Team Member"
               className="w-32 h-32 rounded-full mx-auto mb-4"
             />
-            <h3 className="text-xl font-semibold">Emily Johnson</h3>
+            <h3 className="text-xl font-semibold">Lisa Su</h3>
             <p className="text-lg text-gray-700">COO</p>
           </div>
         </div>

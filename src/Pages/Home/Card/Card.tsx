@@ -34,7 +34,7 @@ const Card = ({ product }: CardProps) => {
           emptySymbol="fa fa-star-o "
           fullSymbol="fa fa-star "
         />
-        <p className="text-gray-600 mb-2">{description}</p>
+        <p className="text-gray-600 mb-2 truncate">{description}</p>
         <p className="text-gray-900 font-bold mb-4">${price}</p>
         <Link to={`/products/${_id}`}>
           <button className="bg-black text-white px-4 py-2 rounded hover:bg-slate-700">
