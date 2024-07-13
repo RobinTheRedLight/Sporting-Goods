@@ -47,8 +47,8 @@ const ManageProducts = () => {
 
   return (
     <div className="container mx-auto p-4">
-      <h1 className="text-2xl font-bold mb-4">Manage Products</h1>
-      <form onSubmit={handleSubmit(handleAddProduct)} className="mb-4">
+      <h1 className="text-4xl  mb-4 font-[Oswald]">Manage Products</h1>
+      <form onSubmit={handleSubmit(handleAddProduct)} className="mb-4 font-[Roboto]">
         <input
           {...register("name", { required: true })}
           placeholder="Product Name"

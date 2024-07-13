@@ -49,8 +49,8 @@ const Checkout = () => {
 
   return (
     <div className="container mx-auto p-4">
-      <h1 className="text-2xl font-bold mb-4">Checkout</h1>
-      <div className="bg-white shadow-md rounded-lg p-6">
+      <h1 className="text-4xl  mb-4 font-[Oswald]">Checkout</h1>
+      <div className="bg-white shadow-md rounded-lg p-6 font-[Roboto]">
         <h2 className="text-xl font-bold mb-4">User Details</h2>
         <div className="mb-4">
           <label className="block text-gray-700">Name</label>

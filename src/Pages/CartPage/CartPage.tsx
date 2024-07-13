@@ -50,8 +50,8 @@ const CartPage = () => {
 
   return (
     <div className="container mx-auto p-4">
-      <h1 className="text-2xl font-bold mb-4">Shopping Cart</h1>
-      <div className="bg-white shadow-md rounded-lg p-6">
+      <h1 className="text-3xl  mb-4 font-[Oswald]">Shopping Cart</h1>
+      <div className="bg-white shadow-md rounded-lg p-6 font-[Roboto]">
         {cartData.length === 0 ? (
           <p>Your cart is empty.</p>
         ) : (
