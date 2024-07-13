@@ -30,13 +30,14 @@ Welcome to the #4 Sporting Goods E-commerce Platform! This platform offers a wid
 ## Installation
 
 To set up the project locally, follow these steps:
+```bash
+# Clone the repository
+git clone https://github.com/RobinTheRedLight/Sporting-Goods.git
+cd Sporting-Goods
 
-1. **Clone the repository:**
-   ```bash
-  git clone https://github.com/RobinTheRedLight/Sporting-Goods.git
-   cd Sporting-Goods
-  # Install dependencies
-  npm install
-  # Start the project
+# Install dependencies
+npm install
+
+# Start the project
   npm run dev
 ```
