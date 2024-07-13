@@ -1,6 +1,6 @@
-# #4 Sporting Goods E-commerce Platform
+# Sporting Goods E-commerce Platform
 
-Welcome to the #4 Sporting Goods E-commerce Platform! This platform offers a wide range of equipment and accessories for various sports. Our website is designed to handle both customer and admin tasks efficiently, providing a seamless shopping and management experience.
+Welcome to the Sporting Goods E-commerce Platform! This platform offers a wide range of equipment and accessories for various sports. Our website is designed to handle both customer and admin tasks efficiently, providing a seamless shopping and management experience.
 
 ## Features
 
