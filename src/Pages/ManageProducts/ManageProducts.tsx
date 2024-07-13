@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState } from "react";
 import {
   useGetProductsQuery,
@@ -17,29 +18,34 @@ const ManageProducts = () => {
   const [deleteProduct] = useDeleteProductMutation();
   const { register, handleSubmit, reset } = useForm();
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [editProductData, setEditProductData] = useState(null);
+  const [editProductData, setEditProductData] = useState<any>(null);
 
-  const handleAddProduct = async (formData) => {
+  const handleAddProduct = async (formData: any) => {
     await addProduct(formData);
     reset();
     refetch();
     toast.success("Product Added");
   };
 
-  const handleEditProduct = (product) => {
+  const handleEditProduct = (product: any) => {
     setEditProductData(product);
     setIsModalOpen(true);
   };
 
-  const handleUpdateProduct = async (formData) => {
-    await updateProduct({ id: editProductData._id, ...formData });
-    setIsModalOpen(false);
-    setEditProductData(null);
-    refetch();
-    toast.success("Product Updated");
+  const handleUpdateProduct = async (formData: any) => {
+    if (editProductData) {
+      await updateProduct({ id: editProductData._id, ...formData });
+      setIsModalOpen(false);
+      setEditProductData(null);
+      refetch();
+      toast.success("Product Updated");
+    } else {
+      console.error("No product data available to update.");
+      toast.error("Failed to update product. Please try again.");
+    }
   };
 
-  const handleDeleteProduct = async (id) => {
+  const handleDeleteProduct = async (id: string) => {
     await deleteProduct(id);
     refetch();
     toast.success("Product Deleted");
@@ -48,7 +54,10 @@ const ManageProducts = () => {
   return (
     <div className="container mx-auto p-4">
       <h1 className="text-4xl  mb-4 font-[Oswald]">Manage Products</h1>
-      <form onSubmit={handleSubmit(handleAddProduct)} className="mb-4 font-[Roboto]">
+      <form
+        onSubmit={handleSubmit(handleAddProduct)}
+        className="mb-4 font-[Roboto]"
+      >
         <input
           {...register("name", { required: true })}
           placeholder="Product Name"
@@ -98,7 +107,7 @@ const ManageProducts = () => {
         </button>
       </form>
       <div>
-        {products?.map((product) => (
+        {products?.map((product: any) => (
           <div
             key={product._id}
             className="border p-4 mb-2 flex justify-between items-center"

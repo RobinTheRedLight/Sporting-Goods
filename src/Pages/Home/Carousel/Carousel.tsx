@@ -20,6 +20,7 @@ const Carousel = () => {
     if (progressCircle.current && progressContent.current) {
       progressCircle.current.style.setProperty("--progress", `${1 - progress}`);
       progressContent.current.textContent = `${Math.ceil(time / 1000)}s`;
+      console.log(s);
     }
   };
 
